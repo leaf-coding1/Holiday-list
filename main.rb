@@ -2,10 +2,10 @@
 
 puts "hello world"
 
-packedItem = Struct.new(:name, :packed)
+PackedItem = Struct.new(:name, :packed, :num)
 
 def newItem(name)
-    packedItem.new(name, false)
+    PackedItem.new(name, false, 1)
 end
 
 items = [
@@ -20,7 +20,10 @@ items = [
     newItem("deodorant"),
     newItem("phone charger"),
     newItem("shaver"),
-    newItem("towel")
+    newItem("towel"),
+    newItem("undie"),
+    newItem("sock"),
+    newItem("shirt")
 ]
 
 breakfast = [
@@ -40,7 +43,7 @@ puts "How many shoes do you need? "
 shoes = gets.chomp
 puts "How many jackets are you taking? "
 jackets = gets.chomp 
-puts "How many letters are you taking? "
+puts "How many swimmers are you taking? "
 swimmers = Integer(gets.chomp)
 
 if swimmers > 0
@@ -48,4 +51,12 @@ if swimmers > 0
     items << newItem("sun cream")
 end
 
+
+
+while gets.chomp != "exit"
+    for i in items 
+        # have one statement for multiples and one for a single item
+        if i.packed == false
+            puts "number of #{i.name}"
+end
 
