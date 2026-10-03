@@ -34,17 +34,36 @@ breakfast = [
 bring_breakfast = false
 
 puts "How many nights are you there? "
-days = gets.chomp
+days = Integer(gets.chomp)
 puts "How many pants? "
-pants = gets.chomp
+pants = Integer(gets.chomp)
 puts "How many shorts? "
-shorts = gets.chomp 
+shorts = Integer(gets.chomp)
 puts "How many shoes do you need? "
-shoes = gets.chomp
+shoes = Integer(gets.chomp)
 puts "How many jackets are you taking? "
-jackets = gets.chomp 
+jackets = Integer(gets.chomp)
 puts "How many swimmers are you taking? "
 swimmers = Integer(gets.chomp)
+
+for i in items
+    if i.name == "undie" || i.name == "sock" || i.name == "shirt"
+        i.num = days
+    end
+end
+
+if pants > 0
+    items << PackedItem.new("pant", false, pants)
+end
+if shorts > 0
+    items << PackedItem.new("short", false, shorts)
+end
+if shoes > 0
+    items << PackedItem.new("shoe", false, shoes)
+end
+if jackets > 0
+    items << PackedItem.new("jacket", false, jackets)
+end
 
 if swimmers > 0
     items << newItem("beach towel")
@@ -56,7 +75,11 @@ end
 while gets.chomp != "exit"
     for i in items 
         # have one statement for multiples and one for a single item
-        if i.packed == false
-            puts "number of #{i.name}"
+        if i.packed == false && i.num == 1
+            puts "bring #{i.name}"
+        elsif i.packed == false
+            puts "number of #{i.name}s is #{i.num}"
+        end
+    end
 end
 
