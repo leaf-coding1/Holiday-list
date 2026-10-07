@@ -31,6 +31,11 @@ breakfast = [
     newItem("milk")
 ]
 
+items.concat(File.readlines("medicine.txt", chomp: true).map do |line| name = line
+    newItem(name)
+end
+)
+
 bring_breakfast = false
 
 puts "How many nights are you there? "
@@ -70,16 +75,27 @@ if swimmers > 0
     items << newItem("sun cream")
 end
 
+ for i in items 
+    if i.packed == false && i.num == 1
+        puts "bring #{i.name}"
+    elsif i.packed == false
+        puts "number of #{i.name}s is #{i.num}"
+    end
+end
 
+userInput = gets.chomp
 
-while gets.chomp != "exit"
+while userInput != "exit"
     for i in items 
-        # have one statement for multiples and one for a single item
+        if userInput == i.name 
+            i.packed = true
+        end
         if i.packed == false && i.num == 1
             puts "bring #{i.name}"
         elsif i.packed == false
             puts "number of #{i.name}s is #{i.num}"
         end
     end
+    userInput = gets.chomp
 end
 
