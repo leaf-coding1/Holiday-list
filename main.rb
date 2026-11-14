@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "hello world"
-
 PackedItem = Struct.new(:name, :packed, :num)
 
 def newItem(name)
@@ -36,8 +34,6 @@ items.concat(File.readlines("medicine.txt", chomp: true).map do |line| name = li
 end
 )
 
-bring_breakfast = false
-
 puts "How many nights are you there? "
 days = Integer(gets.chomp)
 puts "How many pants? "
@@ -50,6 +46,14 @@ puts "How many jackets are you taking? "
 jackets = Integer(gets.chomp)
 puts "How many swimmers are you taking? "
 swimmers = Integer(gets.chomp)
+puts "Do you need to bring breakfast? (Y/N)"
+breakfast_response = gets.chomp 
+
+if breakfast_response.casecmp?("y")
+    for i in breakfast
+        items << i 
+    end
+end
 
 for i in items
     if i.name == "undie" || i.name == "sock" || i.name == "shirt"
@@ -96,6 +100,7 @@ while userInput != "exit"
             puts "number of #{i.name}s is #{i.num}"
         end
     end
+    puts ""
     userInput = gets.chomp
 end
 
